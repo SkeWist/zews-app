@@ -5,20 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZEWS"
         mc:Ignorable="d"
-        Title="Авторизация" Height="350" Width="300"
+        Height="600" Width="800"
         ResizeMode="NoResize"
         >
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="95*"></RowDefinition>
-            <RowDefinition Height="76*"></RowDefinition>
-            <RowDefinition Height="64*"></RowDefinition>
-
-        </Grid.RowDefinitions>
-        <Image Source="/Logo.png" Width="100" VerticalAlignment="Top" Margin="98,-1,102,0" Height="84"/>
-        <Label Grid.Row="0" HorizontalAlignment="Center" Margin="0,83,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="118" FontFamily="Bahnschrift Condensed" >Авторизация</Label>
-        <TextBox x:Name="loginTextBox" VerticalContentAlignment="Center" BorderBrush="Black" Text="Логин" Grid.Row="1" VerticalAlignment="Top" Height="30" Width="200" GotFocus="loginTextBox_GotFocus" LostFocus="loginTextBox_LostFocus" FontFamily="Bahnschrift Condensed" FontSize="18"/>
-        <PasswordBox x:Name="passwordTextBox" BorderBrush="Black" Password="Пароль" Grid.Row="1" Margin="0,10,0,0" Height="30" Width="200" VerticalContentAlignment="Center" GotFocus="passwordTextBox_GotFocus" LostFocus="passwordTextBox_LostFocus" FontFamily="Bahnschrift Condensed" FontSize="16"/>
-        <Button Content="Войти" Grid.Row="2" BorderBrush="Black" Height="40" Width="140" Click="Button_Click" FontFamily="Bahnschrift Condensed" FontSize="18" />
+        <Frame Name="Mainframe" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

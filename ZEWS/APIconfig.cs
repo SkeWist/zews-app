@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ZEWS
+{
+    public class APIconfig
+    {
+           public string APIurl = "http://matokhnyuk-aa.tepk-it.ru/zews/api";
+    }
+}
