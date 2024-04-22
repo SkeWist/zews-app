@@ -25,6 +25,7 @@ namespace ZEWS.Xaml
     public partial class AutorizationPage : Page
     {
         public MainWindow mainWindow;
+
         public AutorizationPage(MainWindow main)
         {
             InitializeComponent();
@@ -32,6 +33,18 @@ namespace ZEWS.Xaml
             mainWindow.UpdateWindowTitle("Страница Авторизации");
             mainWindow.Height = 450;
             mainWindow.Width = 300;
+
+            loginTextBox.KeyDown += TextBox_KeyDown;
+            passwordTextBox.KeyDown += TextBox_KeyDown;
+        }
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Проверяем, нажата ли клавиша Enter
+            if (e.Key == Key.Enter)
+            {
+                // Вызываем обработчик события нажатия на кнопку
+                Button_Click(sender, e);
+            }
         }
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -53,7 +66,7 @@ namespace ZEWS.Xaml
             {
                 //try
                 //{
-                    HttpResponseMessage response = await client.PostAsync("http://matokhnyuk-aa.tepk-it.ru/zews/api/auth/login",
+                    HttpResponseMessage response = await client.PostAsync(APIconfig.APIurl + "/auth/login",
                         new StringContent(json, Encoding.UTF8, "application/json"));
 
                     

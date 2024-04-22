@@ -8,6 +8,6 @@ namespace ZEWS
 {
     public class APIconfig
     {
-           public string APIurl = "http://matokhnyuk-aa.tepk-it.ru/zews/api";
+           public static string APIurl = "http://matokhnyuk-aa.tepk-it.ru/zews/api";
     }
 }
