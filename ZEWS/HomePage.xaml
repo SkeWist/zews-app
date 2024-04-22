@@ -1,0 +1,27 @@
+﻿<Page x:Class="ZEWS.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ZEWS"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="HomePage" Background="White">
+
+    <Grid>
+        <Image Source="/Logo.png" Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock ></TextBlock>
+        <TextBlock HorizontalAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="24" Margin="0 20 0 0">Панель управления</TextBlock>
+
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 200" FontFamily="Bahnschrift Condensed" FontSize="32"> Здравствуйте, {ФИО АДМИНА}</TextBlock>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 30">
+            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Номера гостиницы" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Пользователи системы" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список мероприятий" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список бронирований" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Модерация отзывов" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+        </StackPanel>
+        <Button Height="50" Width="100" VerticalAlignment="Top"  BorderBrush="Black" HorizontalAlignment="Right" Margin="0 25 10 0" Content="Выход" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+    </Grid>
+</Page>
