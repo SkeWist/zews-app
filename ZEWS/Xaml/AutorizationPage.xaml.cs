@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -60,44 +61,44 @@ namespace ZEWS.Xaml
 
             // Сериализуем объект в JSON
             string json = JsonConvert.SerializeObject(credentials);
-      
+
 
             using (HttpClient client = new HttpClient())
             {
-                //try
-                //{
-                    HttpResponseMessage response = await client.PostAsync(APIconfig.APIurl + "/auth/login",
-                        new StringContent(json, Encoding.UTF8, "application/json"));
+                HttpResponseMessage response = await client.PostAsync(APIconfig.APIurl + "/auth/login",
+                     new StringContent(json, Encoding.UTF8, "application/json"));
 
-                    
-                    //response.EnsureSuccessStatusCode(); // Гарантирует, что ответ успешный
+                string responseBody = await response.Content.ReadAsStringAsync();
 
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    
-                    // Парсим ответ в объект
-                    var responseObject = JsonConvert.DeserializeObject<dynamic>(responseBody);
+                // Парсим ответ в объект
+                var responseObject = JsonConvert.DeserializeObject<dynamic>(responseBody);
 
-
-
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    MessageBox.Show("Неверный телефон или пароль.");
+                    return;
+                }
                 // Сохраняем токен в настройках приложения
-                    Properties.Settings.Default.Token = responseObject.token;
-                    Properties.Settings.Default.Name = responseObject.userdata.name;
-                    Properties.Settings.Default.Surname = responseObject.userdata.surname;
-                    Properties.Settings.Default.Patronymic = responseObject.userdata.patronymic;
-                    Properties.Settings.Default.Phone = responseObject.userdata.phone;
-                    Properties.Settings.Default.Save();
-                    
-                    // Переход на другую страницу 
-                    FrameManager.MainFrame.Navigate(new HomePage(mainWindow));
+                Properties.Settings.Default.Token = responseObject.token;
+                Properties.Settings.Default.Name = responseObject.userdata.name;
+                Properties.Settings.Default.Surname = responseObject.userdata.surname;
+                Properties.Settings.Default.Patronymic = responseObject.userdata.patronymic;
+                Properties.Settings.Default.Phone = responseObject.userdata.phone;
+                Properties.Settings.Default.Role = responseObject.userdata.role;
+                Properties.Settings.Default.Save();
 
-                //}
+                string userRole = Properties.Settings.Default.Role;
+                if (userRole != "admin")
+                {
+                    MessageBox.Show("Доступ запрещен. У вас нет прав доступа для этого приложения.");
+                    return;
+                }
 
-                //catch (Exception ex)
-                //{
-                // Ошибка при неправильно введенных данных
-                //MessageBox.Show("Проверьте правильность введенных данных");
-                //MessageBox.Show(ex.Message);
-                //}
+                // Проверяем статус код ответа
+                
+
+                // Переход на другую страницу 
+                FrameManager.MainFrame.Navigate(new HomePage(mainWindow));
             }
         }
     }

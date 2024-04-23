@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Height="600" Width="800"
         ResizeMode="NoResize"
+        Icon="Logo.png"
         >
     <Grid>
         <Frame Name="Mainframe" NavigationUIVisibility="Hidden" />

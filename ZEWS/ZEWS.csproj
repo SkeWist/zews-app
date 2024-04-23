@@ -110,18 +110,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="APIconfig.cs" />
+    <Compile Include="Class\APIconfig.cs" />
     <Compile Include="Xaml\AddNewUser.xaml.cs">
       <DependentUpon>AddNewUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FrameManager.cs" />
+    <Compile Include="Class\FrameManager.cs" />
     <Compile Include="Xaml\AutorizationPage.xaml.cs">
       <DependentUpon>AutorizationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Xaml\ListUsers.xaml.cs">
+      <DependentUpon>ListUsers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Xaml\RedactHotelRoom.xaml.cs">
       <DependentUpon>RedactHotelRoom.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Token.cs" />
     <Page Include="Xaml\AddHotelRoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,6 +159,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Xaml\ListHotelRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Xaml\ListUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
