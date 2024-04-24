@@ -7,9 +7,16 @@ namespace ZEWS
     /// </summary>
     public partial class AddNewUser : Page
     {
-        public AddNewUser()
+        private MainWindow mainWindow;
+        public AddNewUser(MainWindow mainWindow)
         {
             InitializeComponent();
+            this.mainWindow = new MainWindow();
+            mainWindow.UpdateWindowTitle("Добавление пользователя");
+            mainWindow.Height = 450;
+            mainWindow.Width = 1100;
+            roleComboBox.Text = "Администратор";
         }
+
     }
 }

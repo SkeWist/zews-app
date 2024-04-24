@@ -101,5 +101,10 @@ namespace ZEWS
         {
             FrameManager.MainFrame.Navigate(new HomePage(mainWindow));
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FrameManager.MainFrame.Navigate(new AddNewUser(mainWindow));
+        }
     }
 }

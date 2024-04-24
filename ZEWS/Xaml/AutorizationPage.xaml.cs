@@ -101,5 +101,6 @@ namespace ZEWS.Xaml
                 FrameManager.MainFrame.Navigate(new HomePage(mainWindow));
             }
         }
+
     }
 }
