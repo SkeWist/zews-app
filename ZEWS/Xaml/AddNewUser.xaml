@@ -17,15 +17,15 @@
         <StackPanel Grid.Column="0" Margin="0,80,50,0" Width="300" Height="310" VerticalAlignment="Top">
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Логин</TextBlock>
             <StackPanel>
-                <TextBox x:Name="Login" VerticalContentAlignment="Center"  Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="phone" VerticalContentAlignment="Center"  Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Пароль</TextBlock>
             <StackPanel>
-                <TextBox x:Name="Password" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="password" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Повторить пароль</TextBlock>
             <StackPanel>
-                <TextBox x:Name="PasswordRepeat" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="passwordRepeat" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Выберите роль</TextBlock>
             <StackPanel>
@@ -37,17 +37,17 @@
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Дата рождения</TextBlock>
             <StackPanel>
-                <TextBox x:Name="BirthDate" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="120" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="birthday" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="120" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="0,80,50,0" Width="300" Height="435" VerticalAlignment="Top">
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Фамилия</TextBlock>
             <StackPanel>
-                <TextBox x:Name="Name" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="surname" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Имя</TextBlock>
             <StackPanel>
-                <TextBox x:Name="Surname" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="name" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Отчество</TextBlock>
             <StackPanel>
@@ -61,23 +61,23 @@
                 <TextBlock FontFamily="Bahnschrift Condensed" Margin="85 0 0 0" FontSize="18">Код подразделения</TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="DepartmentCode"  VerticalContentAlignment="Center" Width="120" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
-                <TextBox x:Name="PassportSeries" VerticalContentAlignment="Center" Width="120" Margin="60 0 0 0" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="passNumber"  VerticalContentAlignment="Center" Width="120" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="passAuthorityCode" VerticalContentAlignment="Center" Width="120" Margin="60 0 0 0" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Кем выдан</TextBlock>
             <StackPanel>
-                <TextBox x:Name="PassportIssueDate" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="passAuthorityName" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Где прописан</TextBlock>
             <StackPanel>
-                <TextBox x:Name="BirthPlace" VerticalContentAlignment="Center" Width="300" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="passBirthAddress" VerticalContentAlignment="Center" Width="300" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Дата Когда выдан</TextBlock>
             <StackPanel>
-                <TextBox x:Name="PassportIssuedBy" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="passIssueDate" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
 
         </StackPanel>
-        <Button Height="50" Width="150" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20" Content="Сохранить" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+        <Button Height="50" Width="150" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20" Content="Сохранить" FontFamily="Bahnschrift Condensed" FontSize="18" Click="SaveButton_Click"></Button>
     </Grid>
 </Page>
