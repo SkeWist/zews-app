@@ -29,12 +29,8 @@
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Выберите роль</TextBlock>
             <StackPanel>
-                <ComboBox x:Name="roleComboBox" Style="{Binding role}" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18">
+                <ComboBox x:Name="roleComboBox" Style="{Binding role}" HorizontalAlignment="Left" Width="150" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18">
                 </ComboBox>
-            </StackPanel>
-            <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Дата рождения</TextBlock>
-            <StackPanel>
-                <TextBox x:Name="birthday" Style="{Binding birthday}" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="120" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="0,80,50,0" Width="300" Height="435" VerticalAlignment="Top">
@@ -50,9 +46,13 @@
             <StackPanel>
                 <TextBox x:Name="patronymic" Style="{Binding patronymic}" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
-            <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Секс</TextBlock>
+            <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Дата рождения</TextBlock>
             <StackPanel>
-                <TextBox x:Name="sex" Style="{Binding sex}" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <TextBox x:Name="birthday" Style="{Binding birthday}" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="120" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+            </StackPanel>
+            <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Пол</TextBlock>
+            <StackPanel>
+                <ComboBox x:Name="sexComboBox" Style="{Binding sex}" HorizontalAlignment="Left" Width="150" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></ComboBox>
             </StackPanel>
         </StackPanel>
 

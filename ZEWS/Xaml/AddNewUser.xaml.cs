@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using System.Data;
+using System.Collections.Generic;
 
 namespace ZEWS
 {
@@ -27,10 +28,11 @@ namespace ZEWS
                 mainWindow.Height = 450;
                 mainWindow.Width = 1100;
                 roleComboBox.ItemsSource = new string[] { "admin", "manager", "user" };
+                sexComboBox.ItemsSource = new string[] { "male", "femaly" };
                 roleComboBox.SelectedIndex = 0;
             }
 
-            private async void SaveButton_Click(object sender, RoutedEventArgs e)
+        private async void SaveButton_Click(object sender, RoutedEventArgs e)
             {
                 if (string.IsNullOrEmpty(phone.Text) || string.IsNullOrEmpty(password.Text) ||
                     string.IsNullOrEmpty(name.Text) || string.IsNullOrEmpty(surname.Text) ||
@@ -51,13 +53,13 @@ namespace ZEWS
                     birthday = birthday.Text,
                     surname = surname.Text,
                     name = name.Text,
-                    patronymic = patronymic.Text ?? "", // patronymic может быть пустым
+                    patronymic = patronymic.Text ?? "",
                     pass_number = pass_number.Text,
                     pass_authority_code = pass_authority_code.Text,
                     pass_authority_name = pass_authority_name.Text,
                     pass_birth_address = pass_birth_address.Text,
                     pass_issue_date = pass_issue_date.Text,
-                    sex = sex.Text, // Добавлено поле sex
+                    sex = sexComboBox.Text,
                 };
 
                 string json = JsonConvert.SerializeObject(newUser);

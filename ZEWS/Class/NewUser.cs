@@ -23,17 +23,5 @@ namespace ZEWS.Class
         string pass_birth_address { get; set; }  
         DateTime pass_issue_date { get; set; }
     }
-                //phone = phone.Text,
-                //password = password.Text,
-                //passwordRepeat = password.Text,
-                //role = roleComboBox.SelectedItem.ToString(),
-                //birthday = birthday.Text,
-                //surname = surname.Text,
-                //name = name.Text,
-                //patronymic = patronymic.Text,
-                //passNumber = passNumber.Text,
-                //passAuthorityCode = passAuthorityCode.Text,
-                //passAuthorityName = passAuthorityName.Text,
-                //passBirthAddress = passBirthAddress.Text,
-                //passIssueDate = passIssueDate.Text,
+               
 }
