@@ -111,6 +111,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Class\APIconfig.cs" />
+    <Compile Include="Class\NewUser.cs" />
     <Compile Include="Xaml\AddNewUser.xaml.cs">
       <DependentUpon>AddNewUser.xaml</DependentUpon>
     </Compile>

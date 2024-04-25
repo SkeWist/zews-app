@@ -27,6 +27,5 @@ namespace ZEWS
         {
             this.Title = pageTitle;
         }
-
     }
 }
