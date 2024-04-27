@@ -19,6 +19,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZEWS.Class;
+using ZEWS.Xaml;
 
 namespace ZEWS
 {
@@ -51,11 +53,22 @@ namespace ZEWS
             mainWindow.Height = 550;
             mainWindow.Width = 800;
             Loaded += ListUsers_Loaded;
+            usersListBox.MouseDoubleClick += usersListBox_MouseDoubleClick;
         }
 
         private void ListUsers_Loaded(object sender, RoutedEventArgs e)
         {
             LoadData(); // Вызываем метод загрузки данных при загрузке страницы
+        }
+
+        private void usersListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Получаем выбранный элемент ListBox
+            NewUser selectedUser = (NewUser)usersListBox.SelectedItem;
+
+
+            // Переходим к странице редактирования пользователя и передаем выбранного пользователя в конструктор
+            FrameManager.MainFrame.Navigate(new RedactUser(selectedUser.id, mainWindow));
         }
 
 
@@ -85,7 +98,7 @@ namespace ZEWS
                         JArray usersArray = (JArray)jsonResponse["users"];
 
                         // Десериализуем JSON-массив в список объектов User
-                        List<User> users = usersArray.Select(u => u.ToObject<User>()).ToList();
+                        List<NewUser> users = usersArray.Select(u => u.ToObject<NewUser>()).ToList();
 
                         //Перевод ролей
                         foreach (var user in users)
@@ -107,16 +120,6 @@ namespace ZEWS
                 MessageBox.Show("Ошибка: " + ex.Message);
             }
         }
-
-        public class User
-        {
-            public string name { get; set; }
-            public string surname { get; set; }
-            public string patronymic { get; set; }
-
-            public long phone {  get; set; }
-            public string role { get; set;}
-        }   
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {

@@ -94,6 +94,7 @@
             </StackPanel>
 
         </StackPanel>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Height="50" Width="100" Margin="10" Content="Назад" FontFamily="Bahnschrift Condensed" FontSize="18" Click="BackButton_Click"></Button>
         <Button Height="50" Width="150" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20" Content="Сохранить" FontFamily="Bahnschrift Condensed" FontSize="18" Click="SaveButton_Click"></Button>
     </Grid>
 </Page>

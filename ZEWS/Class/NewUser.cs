@@ -7,22 +7,23 @@ using System.Threading.Tasks;
 
 namespace ZEWS.Class
 {
-    internal class NewUser
+    public class NewUser
     {
-        string phone {  get; set; }
-        string password { get; set; }
-        string passwordRepeat { get; set; }
-        string role { get; set; }
-        DateTime birthday { get; set; }
-        string surname { get; set; }
-        string name { get; set; }
-        string patronymic { get; set; }
-        string pass_number { get; set; }
-        string pass_authority_code { get; set; }
-        string pass_authority_name { get; set; }
-        string pass_birth_address { get; set; }  
-        DateTime pass_issue_date { get; set; }
-        bool sex { get; set; }
+        public long id {get; set;} 
+        public string phone {  get; set; }
+        public string password { get; set; }
+        public string passwordRepeat { get; set; }
+        public string role { get; set; }
+        public DateTime birthday { get; set; }
+        public string surname { get; set; }
+        public string name { get; set; }
+        public string patronymic { get; set; }
+        public string pass_number { get; set; }
+        public string pass_authority_code { get; set; }
+        public string pass_authority_name { get; set; }
+        public string pass_birth_address { get; set; }  
+        public DateTime pass_issue_date { get; set; }
+        public bool sex { get; set; }
     }
                
 }
