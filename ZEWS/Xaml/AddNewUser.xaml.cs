@@ -9,6 +9,10 @@ using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using System.Data;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Windows.Data;
+using ZEWS.Class;
+using System.Windows.Input;
 
 namespace ZEWS
 {
@@ -20,17 +24,51 @@ namespace ZEWS
             private string accessToken = Properties.Settings.Default.Token;
 
             private MainWindow mainWindow;
-            public AddNewUser(MainWindow mainWindow)
+
+        public AddNewUser(MainWindow mainWindow)
             {
                 InitializeComponent();
                 this.mainWindow = new MainWindow();
                 mainWindow.UpdateWindowTitle("Добавление пользователя");
                 mainWindow.Height = 450;
                 mainWindow.Width = 1100;
-                roleComboBox.ItemsSource = new string[] { "admin", "manager", "user" };
-                sexComboBox.ItemsSource = new string[] { "male", "femaly" };
-                roleComboBox.SelectedIndex = 0;
+            roleComboBox.ItemsSource = new List<Role>() { 
+                new Role("admin", "Администратор"),
+                new Role("manager", "Менеджер"),
+                new Role("user", "Пользователь")
+            };
+            roleComboBox.DisplayMemberPath = "Name";
+            roleComboBox.SelectedIndex = 0;
+            sexComboBox.ItemsSource = new List<Sex>()
+            {
+                new Sex("male", "Мужчина"),
+                new Sex("female", "Женщина")
+            };
+            sexComboBox.DisplayMemberPath = "Name";
+            sexComboBox.SelectedIndex = 0;
+            name.PreviewTextInput += TextBox_PreviewTextInput;
+            surname.PreviewTextInput += TextBox_PreviewTextInput;
+            patronymic.PreviewTextInput += TextBox_PreviewTextInput;
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Проверяем, что вводимый символ является буквой
+            if (!Regex.IsMatch(e.Text, @"^[а-яА-Яa-zA-Z]+$"))
+            {
+                // Если вводимый символ не является буквой, отменяем его
+                e.Handled = true;
             }
+        }
+        private void Phone_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // Проверяем, что вводимый символ является цифрой или символом '_'
+            if (!char.IsDigit(e.Text, 0) && e.Text != "_")
+            {
+                // Если вводимый символ не является цифрой или символом '_', отменяем его
+                e.Handled = true;
+            }
+        }
 
         private async void SaveButton_Click(object sender, RoutedEventArgs e)
             {
@@ -44,9 +82,12 @@ namespace ZEWS
                     return;
                 }
 
-                var newUser = new
+            string gender = sexComboBox.SelectedItem.ToString();
+            int sexValue = gender == "male" ? 1 : 0;
+            
+            var newUser = new
                 {
-                    phone = phone.Text,
+                    phone = Convert.ToInt64(Regex.Replace(phone.Text, @"[^\d]", "")),
                     password = password.Text,
                     passwordRepeat = password.Text,
                     role = roleComboBox.SelectedItem.ToString(),
@@ -54,15 +95,16 @@ namespace ZEWS
                     surname = surname.Text,
                     name = name.Text,
                     patronymic = patronymic.Text ?? "",
-                    pass_number = pass_number.Text,
-                    pass_authority_code = pass_authority_code.Text,
+                    pass_number = Convert.ToInt64(Regex.Replace(pass_number.Text, @"[^\d]", "")),
+                    pass_authority_code = Convert.ToInt64(Regex.Replace(pass_authority_code.Text, @"[^\d]", "")),
                     pass_authority_name = pass_authority_name.Text,
                     pass_birth_address = pass_birth_address.Text,
                     pass_issue_date = pass_issue_date.Text,
-                    sex = sexComboBox.Text,
+                    sex = sexValue,
                 };
 
                 string json = JsonConvert.SerializeObject(newUser);
+            MessageBox.Show(json);
 
                 try
                 {
@@ -87,6 +129,7 @@ namespace ZEWS
                 {
                     MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}");
                 }
+
             }
         }
     }    

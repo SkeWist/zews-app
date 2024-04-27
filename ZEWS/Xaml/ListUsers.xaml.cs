@@ -29,6 +29,21 @@ namespace ZEWS
     {
         private MainWindow mainWindow;
 
+        private string TranslateRole(string role)
+        {
+            switch (role)
+            {
+                case "admin":
+                    return "Администратор";
+                case "manager":
+                    return "Менеджер";
+                case "user":
+                    return "Пользователь";
+                default:
+                    return role;
+
+            }
+        }
         public ListUsers(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -71,6 +86,12 @@ namespace ZEWS
 
                         // Десериализуем JSON-массив в список объектов User
                         List<User> users = usersArray.Select(u => u.ToObject<User>()).ToList();
+
+                        //Перевод ролей
+                        foreach (var user in users)
+                        {
+                            user.role = TranslateRole(user.role);
+                        }
 
                         // Привязываем список users к источнику данных ListBox
                         usersListBox.ItemsSource = users;

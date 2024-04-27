@@ -22,6 +22,7 @@ namespace ZEWS.Class
         string pass_authority_name { get; set; }
         string pass_birth_address { get; set; }  
         DateTime pass_issue_date { get; set; }
+        bool sex { get; set; }
     }
                
 }
