@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" FontFamily="Bahnschrift Condensed" FontSize="22" Margin="37,10,0,0" Grid.Column="1">Добавление нового пользователя</TextBlock>
         <StackPanel Grid.Column="0" Margin="0,80,50,0" Width="300" Height="310" VerticalAlignment="Top">
-            <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Логин</TextBlock>
+            <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Телефон</TextBlock>
             <StackPanel>
                 <xctk:MaskedTextBox x:Name="phone" 
                     Mask="8-000-000-00-00" 

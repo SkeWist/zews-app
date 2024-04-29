@@ -10,7 +10,7 @@ namespace ZEWS.Class
     public class NewUser
     {
         public long id {get; set;} 
-        public string phone {  get; set; }
+        public long phone {  get; set; }
         public string password { get; set; }
         public string passwordRepeat { get; set; }
         public string role { get; set; }
@@ -18,8 +18,8 @@ namespace ZEWS.Class
         public string surname { get; set; }
         public string name { get; set; }
         public string patronymic { get; set; }
-        public string pass_number { get; set; }
-        public string pass_authority_code { get; set; }
+        public long pass_number { get; set; }
+        public int pass_authority_code { get; set; }
         public string pass_authority_name { get; set; }
         public string pass_birth_address { get; set; }  
         public DateTime pass_issue_date { get; set; }

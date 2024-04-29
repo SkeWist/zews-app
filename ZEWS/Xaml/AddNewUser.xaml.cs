@@ -83,7 +83,9 @@ namespace ZEWS
             }
 
             string gender = sexComboBox.SelectedItem.ToString();
-            int sexValue = gender == "male" ? 1 : 0;
+            bool sexValue = gender == "male" ? true : false;
+            DateTime Birthday = birthday.SelectedDate??new DateTime ();
+            DateTime PassIssueDate = pass_issue_date.SelectedDate ?? new DateTime();
 
             var newUser = new
             {
@@ -91,7 +93,7 @@ namespace ZEWS
                 password = password.Text,
                 passwordRepeat = password.Text,
                 role = roleComboBox.SelectedItem.ToString(),
-                birthday = birthday.Text,
+                birthday = Birthday.ToString("yyyy-MM-dd"),
                 surname = surname.Text,
                 name = name.Text,
                 patronymic = patronymic.Text ?? "",
@@ -99,7 +101,7 @@ namespace ZEWS
                 pass_authority_code = Convert.ToInt64(Regex.Replace(pass_authority_code.Text, @"[^\d]", "")),
                 pass_authority_name = pass_authority_name.Text,
                 pass_birth_address = pass_birth_address.Text,
-                pass_issue_date = pass_issue_date.Text,
+                pass_issue_date = PassIssueDate.ToString("yyyy-MM-dd"),
                 sex = sexValue,
             };
 
@@ -129,6 +131,8 @@ namespace ZEWS
             {
                 MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}");
             }
+
+
         }
 
         private void BackButton_Click(object sender, System.Windows.RoutedEventArgs e)

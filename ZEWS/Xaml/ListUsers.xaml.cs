@@ -49,6 +49,7 @@ namespace ZEWS
         public ListUsers(MainWindow mainWindow)
         {
             InitializeComponent();
+            usersListBox.Items.Clear();
             this.mainWindow = mainWindow;
             mainWindow.Height = 550;
             mainWindow.Width = 800;

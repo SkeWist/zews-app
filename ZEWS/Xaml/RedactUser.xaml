@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:local="clr-namespace:ZEWS.Xaml"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1100"
@@ -14,11 +15,20 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock HorizontalAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="22" Margin="0,10,0,0" Grid.Column="1">Редактирование пользователя</TextBlock>
+        <TextBlock HorizontalAlignment="Left" FontFamily="Bahnschrift Condensed" FontSize="22" Margin="37,10,0,0" Grid.Column="1">Добавление нового пользователя</TextBlock>
         <StackPanel Grid.Column="0" Margin="0,80,50,0" Width="300" Height="310" VerticalAlignment="Top">
-            <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Логин</TextBlock>
+            <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Телефон</TextBlock>
             <StackPanel>
-                <TextBox x:Name="phone" Style="{Binding phone}" VerticalContentAlignment="Center"  Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <xctk:MaskedTextBox x:Name="phone" 
+                Mask="8-000-000-00-00" 
+                Width="300" 
+                Height="40" 
+                BorderBrush="Black" 
+                FontFamily="Bahnschrift Condensed" 
+                FontSize="18" 
+                Style="{Binding phone}" 
+                VerticalContentAlignment="Center"
+                PreviewTextInput="Phone_PreviewTextInput"/>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Пароль</TextBlock>
             <StackPanel>
@@ -49,7 +59,7 @@
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Дата рождения</TextBlock>
             <StackPanel>
-                <TextBox x:Name="birthday" Style="{Binding birthday}" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="120" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <DatePicker x:Name="birthday" Style="{Binding birthday}" HorizontalAlignment="Left" VerticalContentAlignment="Center" Width="120" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></DatePicker>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Пол</TextBlock>
             <StackPanel>
@@ -63,8 +73,12 @@
                 <TextBlock FontFamily="Bahnschrift Condensed" Margin="85 0 0 0" FontSize="18">Код подразделения</TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="pass_number" Style="{Binding pass_number}" VerticalContentAlignment="Center" Width="120" Height="40"  BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
-                <TextBox x:Name="pass_authority_code" Style="{Binding pass_authority_code}" VerticalContentAlignment="Center" Width="120" Margin="60 0 0 0" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <xctk:MaskedTextBox x:Name="pass_number" Mask="0000-000000" 
+                Width="120" Height="40" BorderBrush="Black" 
+                FontFamily="Bahnschrift Condensed" FontSize="18"  VerticalContentAlignment="Center" Style="{Binding pass_number}"/>
+                <xctk:MaskedTextBox x:Name="pass_authority_code" Mask="000-000" 
+                Width="120" Height="40" BorderBrush="Black" Margin="60 0 0 0"
+                FontFamily="Bahnschrift Condensed" FontSize="18" VerticalContentAlignment="Center" Style="{Binding pass_authority_code}"/>
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Кем выдан</TextBlock>
             <StackPanel>
@@ -76,11 +90,11 @@
             </StackPanel>
             <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18">Дата Когда выдан</TextBlock>
             <StackPanel>
-                <TextBox x:Name="pass_issue_date" Style="{Binding pass_issue_date}" VerticalContentAlignment="Center" Width="300" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                <DatePicker x:Name="pass_issue_date" Style="{Binding pass_issue_date}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="120" Height="40" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></DatePicker>
             </StackPanel>
 
         </StackPanel>
-        <Button Height="50" Width="100" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20" Content="Назад" FontFamily="Bahnschrift Condensed" FontSize="18" Click="BackButton_Click"></Button>
+        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Column="2" Height="50" Width="100" Margin="10" Content="Назад" FontFamily="Bahnschrift Condensed" FontSize="18" Click="BackButton_Click"></Button>
         <Button Height="50" Width="150" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20" Content="Сохранить" FontFamily="Bahnschrift Condensed" FontSize="18" Click="SaveButton_Click"></Button>
     </Grid>
 </Page>
