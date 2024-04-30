@@ -16,7 +16,7 @@
         <TextBlock x:Name="FIO" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 240" FontFamily="Bahnschrift Condensed" FontSize="32"></TextBlock>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 40">
-            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Номера гостиницы" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Номера гостиницы" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click_HotelRoomsList"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Пользователи системы" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click_ListUsers"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список мероприятий" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список бронирований" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>

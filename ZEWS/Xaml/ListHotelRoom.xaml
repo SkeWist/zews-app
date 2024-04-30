@@ -7,8 +7,71 @@
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="800"
       Title="ListHotelRoom" Background="White">
+    <Page.Resources>
+        <Style x:Key="UserCardStyle" TargetType="Border">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Gray" Offset="0"/>
+                        <GradientStop Color="LightGray" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Width" Value="550"/>
+            <Setter Property="Height" Value="120"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" ShadowDepth="5" BlurRadius="5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Grid.ColumnSpan="2" FontFamily="Bahnschrift Condensed" FontSize="22" Margin="0 10 0 0"> Номера гостиницы</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
 
+            <ColumnDefinition></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="HotelRoomListBox" Grid.ColumnSpan="3" Margin="70" >
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource UserCardStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Название и тип номера слева сверху -->
+                            <StackPanel Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10">
+                                <TextBlock Text="{Binding name}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding type}" FontStyle="Italic"/>
+                            </StackPanel>
+
+                            <!-- Описание по середине -->
+                            <TextBlock Grid.Column="1" Text="{Binding description}" TextWrapping="Wrap" Margin="10"/>
+
+                            <!-- Фото справа -->
+                            <Image Grid.Column="2" Source="{Binding photos.img_1}" Width="100" Height="100" Margin="10"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Height="50" Width="150" Grid.Column="1" VerticalAlignment="Bottom"  BorderBrush="Black" HorizontalAlignment="Center" Margin="0,0,0,10" Content="Добавить пользователя" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click"></Button>
+        <Button Height="50" Width="100" Grid.Column="2" VerticalAlignment="Top"  BorderBrush="Black" HorizontalAlignment="Right" Margin="0,10,30,0" Content="Назад" FontFamily="Bahnschrift Condensed" FontSize="18" Click="BackButton_Click"></Button>
     </Grid>
 </Page>

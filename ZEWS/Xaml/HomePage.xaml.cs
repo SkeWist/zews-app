@@ -56,5 +56,9 @@ namespace ZEWS
             mainWindow.Mainframe.Navigate(new ListUsers(mainWindow));
         }
 
+        private void Button_Click_HotelRoomsList(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Mainframe.Navigate(new ListHotelRoom(mainWindow));
+        }
     }
 }

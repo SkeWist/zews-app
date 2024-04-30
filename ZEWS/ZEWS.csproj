@@ -128,6 +128,7 @@
     <Compile Include="Class\APIconfig.cs" />
     <Compile Include="Class\NewUser.cs" />
     <Compile Include="Class\Role.cs" />
+    <Compile Include="Class\Rooms.cs" />
     <Compile Include="Class\Sex.cs" />
     <Compile Include="Xaml\AddNewUser.xaml.cs">
       <DependentUpon>AddNewUser.xaml</DependentUpon>

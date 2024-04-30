@@ -8,40 +8,12 @@ namespace ZEWS
     /// </summary>
     public partial class AddHotelRoom : Page
     {
-        public AddHotelRoom()
+        private MainWindow mainWindow;
+        public AddHotelRoom(MainWindow mainWindow)
         {
             InitializeComponent();
-        }
-        private void Description_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (Description.Text == "Описание")
-            {
-                Login.Text = "";
-            }
-        }
+            this.mainWindow = mainWindow;  
 
-        private void Description_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (Description.Text == "")
-            {
-                Description.Text = "Описание";
-            }
-        }
-
-        private void Login_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (Login.Text == "Логин")
-            {
-                Login.Text = "";
-            }
-        }
-
-        private void Login_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (Login.Text == "")
-            {
-                Login.Text = "Логин";
-            }
         }
     }
 }
