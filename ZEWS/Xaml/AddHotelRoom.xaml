@@ -24,6 +24,22 @@
                 <TextBox x:Name="description" Width="352" Height="150" BorderBrush="Black" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
             </StackPanel>
         </StackPanel>
+        <StackPanel Grid.Column="1" Margin="10,0,10,0" Height="310" VerticalAlignment="Center">
+            <StackPanel Background="White">
+                <Image x:Name="img_1" Width="200" Height="200" Source="/Img/NoPhoto.png" Stretch="UniformToFill">
+                    <Image.OpacityMask>
+                        <ImageBrush/>
+                    </Image.OpacityMask>
+                </Image>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <!-- Миниатюрные фотографии -->
+                <Image x:Name="img_2" Width="60" Height="60" Margin="5" Stretch="UniformToFill"/>
+                <Image x:Name="img_3" Width="60" Height="60" Margin="5" Stretch="UniformToFill"/>
+                <Image x:Name="img_4" Width="60" Height="60" Margin="5" Stretch="UniformToFill"/>
+                <Button Width="120" Height="70" Content="Добавить&#xD;&#xA;фотографии" Margin="50,0,0,0" HorizontalAlignment="Right" FontFamily="Bahnschrift Condensed" FontSize="18" Click="AddPhotoButton_Click"/>
+            </StackPanel>
+        </StackPanel>
         <Button Width="200" Height="50" Content="Сохранить" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="300,0,0,10" Grid.ColumnSpan="2" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
     </Grid>
 </Page>

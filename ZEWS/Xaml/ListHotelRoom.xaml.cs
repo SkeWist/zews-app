@@ -103,5 +103,42 @@ namespace ZEWS
         {
             FrameManager.MainFrame.Navigate(new AddHotelRoom(mainWindow));
         }
+        private async void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Получаем объект комнаты, связанный с нажатой кнопкой "Удалить"
+            var button = sender as Button;
+            var room = button.DataContext as Room;
+
+            try
+            {
+                string token = Properties.Settings.Default.Token;
+
+                // Создаем HttpClient
+                using (HttpClient client = new HttpClient())
+                {
+                    // Добавляем заголовок авторизации с токеном Bearer
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                    // Отправляем DELETE запрос по URL для удаления комнаты с определенным id
+                    HttpResponseMessage response = await client.DeleteAsync(APIconfig.APIurl + $"/rooms/{room.id}");
+
+                    // Проверяем успешность запроса
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Успешно удалено, можно обновить список комнат
+                        MessageBox.Show("Комната успешно удалена!");
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка при удалении: " + response.ReasonPhrase);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
+            }
+        }
     }
 }

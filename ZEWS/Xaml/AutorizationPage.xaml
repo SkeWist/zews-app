@@ -17,8 +17,8 @@
         <Image Source="/Logo.png" Width="100" VerticalAlignment="Top" Margin="98,-1,102,0" Height="84"/>
         <Label Grid.Row="0" HorizontalAlignment="Center" Margin="0,83,0,0" VerticalAlignment="Top" FontSize="24" Height="42" Width="118" FontFamily="Bahnschrift Condensed" >Авторизация</Label>
         <Label Grid.Row="0" HorizontalAlignment="Left" Margin="50,0,0,124" VerticalAlignment="Bottom" FontSize="18" Height="42" Width="118" FontFamily="Bahnschrift Condensed" Grid.RowSpan="2" Content="Телефон"></Label>
-        <TextBox x:Name="loginTextBox" Text="98887776655" VerticalContentAlignment="Center" BorderBrush="Black" Grid.Row="1" VerticalAlignment="Top" Height="30" Width="200" FontFamily="Bahnschrift Condensed" FontSize="18"/>
-        <PasswordBox x:Name="passwordTextBox" Password="admin123" BorderBrush="Black" Grid.Row="1" Margin="0,10,0,0" Height="30" Width="200" VerticalContentAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="16"/>
+        <TextBox x:Name="loginTextBox" Text="88887776655" VerticalContentAlignment="Center" BorderBrush="Black" Grid.Row="1" VerticalAlignment="Top" Height="30" Width="200" FontFamily="Bahnschrift Condensed" FontSize="18"/>
+        <PasswordBox x:Name="passwordTextBox" Password="123123123" BorderBrush="Black" Grid.Row="1" Margin="0,10,0,0" Height="30" Width="200" VerticalContentAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="16"/>
         <Button Content="Войти" Grid.Row="2" BorderBrush="Black" Height="40" Width="140"  FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click"  />
         <Label Grid.Row="1" HorizontalAlignment="Left" Margin="50,0,0,65" VerticalAlignment="Bottom" FontSize="18" Height="42" Width="118" FontFamily="Bahnschrift Condensed" Content="Пароль"/>
     </Grid>

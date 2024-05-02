@@ -18,7 +18,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 40">
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Номера гостиницы" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click_HotelRoomsList"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Пользователи системы" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click_ListUsers"></Button>
-            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список мероприятий" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список услуг" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список бронирований" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Модерация отзывов" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Статистика продаж" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
