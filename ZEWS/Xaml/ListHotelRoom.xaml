@@ -21,7 +21,6 @@
             <Setter Property="BorderBrush" Value="Gray"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="10"/>
-            <Setter Property="Padding" Value="10"/>
             <Setter Property="Width" Value="550"/>
             <Setter Property="Height" Value="120"/>
             <Setter Property="Effect">
@@ -57,15 +56,19 @@
 
                             <!-- Название и тип номера слева сверху -->
                             <StackPanel Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10">
-                                <TextBlock Text="{Binding name}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding type}" FontStyle="Italic"/>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Type}" FontStyle="Italic"/>
                             </StackPanel>
 
                             <!-- Описание по середине -->
-                            <TextBlock Grid.Column="1" Text="{Binding description}" TextWrapping="Wrap" Margin="10"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Description}" TextWrapping="Wrap" Margin="10"/>
                             <Button Width="90" Height="30" Grid.Column="1" VerticalAlignment="Bottom" Click="DeleteButton_Click">Удалить</Button>
                                 <!-- Фото справа -->
-                            <Image Grid.Column="2" Source="{Binding photos.img_1}" Width="100" Height="100" Margin="10"/>
+                            <Border CornerRadius="0, 10, 10, 0" Grid.Column="2" Width="120" Height="120">
+                                <Border.Background>
+                                    <ImageBrush  ImageSource="{Binding Photos[0].URL}"  Stretch="UniformToFill" />
+                                </Border.Background>
+                            </Border>
                         </Grid>
                     </Border>
                 </DataTemplate>

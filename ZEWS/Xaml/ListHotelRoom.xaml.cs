@@ -8,6 +8,8 @@ using System.Windows.Controls;
 using System.Linq;
 using Newtonsoft.Json;
 using ZEWS.Class;
+using System.Windows.Input;
+using ZEWS.Xaml;
 
 namespace ZEWS
 {
@@ -25,6 +27,16 @@ namespace ZEWS
             mainWindow.Height = 550;
             mainWindow.Width = 800;
             Loaded += ListHotelRooms_Loaded;
+            HotelRoomListBox.MouseDoubleClick += HotelRoomListBox_MouseDoubleClick;
+        }
+
+        private void HotelRoomListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Получаем выбранный элемент ListBox
+            HotelRoom selectedHotelRoom = (HotelRoom)HotelRoomListBox.SelectedItem;
+
+            // Переходим к странице редактирования пользователя и передаем выбранного пользователя в конструктор
+            FrameManager.MainFrame.Navigate(new RedactHotelRoom(selectedHotelRoom.Id, mainWindow));
         }
 
         private void ListHotelRooms_Loaded(object sender, RoutedEventArgs e)
@@ -34,8 +46,8 @@ namespace ZEWS
 
         private async void LoadData()
         {
-            try
-            {
+            //try
+            //{
                 string token = Properties.Settings.Default.Token;
 
                 // Создаем HttpClient
@@ -57,15 +69,21 @@ namespace ZEWS
 
                         // Извлекаем массив комнат из объекта
                         JArray roomsArray = (JArray)roomsObject["rooms"];
-
-                        // Преобразуем каждый элемент массива в объект Room
-                        var rooms = roomsArray.Select(room => new Room
+                        //var photoObject = (JObject);
+                        //var photoList = new List<Photo>();
+                        //foreach (var roomType in roomTypesObject.Properties())
+                        //{
+                            //photoList.Add(new Photo(Convert.ToInt64(roomType.Name), roomType.Value.ToString()));
+                        //}                        // Преобразуем каждый элемент массива в объект Room
+                        var rooms = roomsArray.Select(room => new HotelRoom
                         {
-                            id = (int)room["id"],
-                            name = (string)room["name"],
-                            description = (string)room["description"],
-                            price = (decimal)room["price"],
-                            type = (string)room["type"]
+
+                            Id = (int)room["id"],
+                            Name = (string)room["name"],
+                            Description = (string)room["description"],
+                            Price = (double)room["price"],
+                            Type = (string)room["type"],
+                            Photos = HotelRoom.AddPhotos((JObject)(room["photos"]))
                             // Добавьте другие свойства, если они есть
                         }).ToList();
 
@@ -77,21 +95,11 @@ namespace ZEWS
                         MessageBox.Show("Ошибка при получении данных: " + response.ReasonPhrase);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка: " + ex.Message);
-            }
-        }
-
-        public class Room
-        {
-            public int id { get; set; }
-            public string name { get; set; }
-            public string description { get; set; }
-            public decimal price { get; set; }
-            public string type { get; set; }
-            // Добавьте другие свойства, если они есть
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Ошибка: " + ex.Message);
+            //}
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -107,7 +115,7 @@ namespace ZEWS
         {
             // Получаем объект комнаты, связанный с нажатой кнопкой "Удалить"
             var button = sender as Button;
-            var room = button.DataContext as Room;
+            var room = button.DataContext as HotelRoom;
 
             try
             {
@@ -120,7 +128,7 @@ namespace ZEWS
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                     // Отправляем DELETE запрос по URL для удаления комнаты с определенным id
-                    HttpResponseMessage response = await client.DeleteAsync(APIconfig.APIurl + $"/rooms/{room.id}");
+                    HttpResponseMessage response = await client.DeleteAsync(APIconfig.APIurl + $"/rooms/{room.Id}");
 
                     // Проверяем успешность запроса
                     if (response.IsSuccessStatusCode)

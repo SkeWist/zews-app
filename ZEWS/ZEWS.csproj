@@ -126,9 +126,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Class\APIconfig.cs" />
+    <Compile Include="Class\HotelRoom.cs" />
     <Compile Include="Class\NewUser.cs" />
+    <Compile Include="Class\Photo.cs" />
     <Compile Include="Class\Role.cs" />
-    <Compile Include="Class\Rooms.cs" />
+    <Compile Include="Class\RoomType.cs" />
     <Compile Include="Class\Sex.cs" />
     <Compile Include="Xaml\AddNewUser.xaml.cs">
       <DependentUpon>AddNewUser.xaml</DependentUpon>

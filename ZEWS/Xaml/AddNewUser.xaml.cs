@@ -106,8 +106,6 @@ namespace ZEWS
             };
 
             string json = JsonConvert.SerializeObject(newUser);
-            MessageBox.Show(json);
-
             try
             {
                 using (var client = new HttpClient())
@@ -131,10 +129,7 @@ namespace ZEWS
             {
                 MessageBox.Show($"Ошибка при выполнении запроса: {ex.Message}");
             }
-
-
         }
-
         private void BackButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             FrameManager.MainFrame.Navigate(new ListUsers(mainWindow));
