@@ -8,6 +8,8 @@ using System.Windows;
 using Newtonsoft.Json.Linq;
 using System.Windows.Media.Imaging;
 using System.Windows.Input;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace ZEWS
 {
@@ -16,24 +18,52 @@ namespace ZEWS
     /// </summary>
     public partial class RedactHotelRoom : Page
     {
+        private HttpClient client;
         private string accessToken = Properties.Settings.Default.Token;
         private HotelRoom currentHotelRoom;
         private MainWindow mainWindow;
         private long roomId;
         public RedactHotelRoom(long id, MainWindow mainWindow )
         {
+            roomId = id;
             InitializeComponent();
             this.mainWindow = mainWindow;
-            mainWindow.UpdateWindowTitle("Редактирование пользователя");
-            mainWindow.Height = 450;
-            mainWindow.Width = 1100;
+            this.client = new HttpClient();
+            FillRoomTypesComboBox();
+            mainWindow.UpdateWindowTitle("Редактирование номера");
+            mainWindow.Height = 550;
+            mainWindow.Width = 800;
             LoadData();
+        }
+        private async void FillRoomTypesComboBox()
+        {
+            try
+            {
+                // Отправить запрос к API для получения списка типов номеров
+                HttpResponseMessage response = await client.GetAsync(APIconfig.APIurl + "/rooms/types");
+                response.EnsureSuccessStatusCode();
+                var responseBody = await response.Content.ReadAsStringAsync();
+                var responseObject = JObject.Parse(responseBody);
+                var roomTypesObject = (JObject)responseObject["roomTypes"];
+                var roomTypesList = new List<RoomType>();
+                foreach (var roomType in roomTypesObject.Properties())
+                {
+                    roomTypesList.Add(new RoomType(Convert.ToInt64(roomType.Name), roomType.Value.ToString()));
+                }
+
+                // Присваиваем значения roomTypes свойству ItemsSource ComboBox
+                type.ItemsSource = roomTypesList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при получении данных: " + ex.Message);
+            }
         }
         private async void LoadData()
         {
             string token = Properties.Settings.Default.Token;
-            try
-            {
+            //try
+            //{
                 // Создание HttpClient
                 using (HttpClient client = new HttpClient())
                 {
@@ -51,7 +81,14 @@ namespace ZEWS
                     {
                         string responseBody = await response.Content.ReadAsStringAsync();
                         var room = JObject.Parse(responseBody);
-                        currentHotelRoom = room.ToObject<HotelRoom>();
+                        currentHotelRoom = new HotelRoom (){
+                            Id = (long)room["id"], 
+                            Name = (string)room["name"], 
+                            Type = (string)room["type"], 
+                            Description = (string)room["description"],
+                            Price = (double)room["price"],
+                            Photos = HotelRoom.AddPhotos((JObject)room["photos"])    
+                        };
                         MessageBox.Show(currentHotelRoom.Id.ToString());
                         FillForm();
                     }
@@ -60,11 +97,11 @@ namespace ZEWS
                         MessageBox.Show($"Ошибка при обновлении информации о пользователе: {response.ReasonPhrase}");
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка: {ex.Message}");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Ошибка: {ex.Message}");
+            //}
         }
         private void AddThumbnailImage(string imagePath)
         {
@@ -98,14 +135,87 @@ namespace ZEWS
             string apiUrl = APIconfig.APIurl;
 
             name.Text = currentHotelRoom.Name.ToString();
-            type.SelectedItem = currentHotelRoom?.Type.ToString();
+            type.SelectedValue = currentHotelRoom?.Type.ToString();
             price.Text = currentHotelRoom?.Price.ToString();
             description.Text = currentHotelRoom.Description;
             foreach (var photo in currentHotelRoom.Photos)
             {
                 AddThumbnailImage(APIconfig.APIstorage + "/" + photo.Name);
-
             }
+            // Создаем новый объект BitmapImage с URL-адресом изображения
+
+
+            if (currentHotelRoom?.Photos != null && currentHotelRoom?.Photos?.Count > 0)
+            {
+                BitmapImage bitmapImage = new BitmapImage(new Uri(currentHotelRoom.Photos[0].URL));
+                // Устанавливаем BitmapImage как источник изображения для элемента Image
+                img_1.Source = bitmapImage;
+            }
+
+        }
+
+        private async void UpdateRoomAsync()
+        {
+
+            string token = Properties.Settings.Default.Token;
+            //try
+
+            // Создание HttpClient
+            using (HttpClient client = new HttpClient())
+            {
+              
+                MultipartFormDataContent multiContent = new MultipartFormDataContent();
+                 multiContent.Add(new StringContent(name.Text), "name");
+                 multiContent.Add(new StringContent(((RoomType)type.SelectedValue).Id.ToString()), "type_id");
+                 multiContent.Add(new StringContent(price.Text), "price");
+                 multiContent.Add(new StringContent(description.Text), "description");
+                 multiContent.Add(new StringContent(price.Text), "price");
+
+
+
+
+                foreach (var content in multiContent)
+                {
+                    // Проверяем, является ли текущий элемент StringContent
+                    if (content is StringContent stringContent)
+                    {
+                        // Выводим имя и значение StringContent
+                        MessageBox.Show($"Name: {content.Headers.ContentDisposition.Name}, Value: {stringContent.ReadAsStringAsync().Result}");
+                    }
+                    else
+                    {
+                        // Если это не StringContent, выводим только имя
+                        MessageBox.Show($"Name: {content.Headers.ContentDisposition.Name}, Value: [Non-StringContent]");
+                    }
+                }
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                // Формирование данных для отправки на сервер
+                string apiUrl = APIconfig.APIurl;
+
+
+                // Отправка POST запроса на сервер для обновления информации о пользователе
+                HttpResponseMessage response = await client.PostAsync($"{apiUrl}/users/{currentHotelRoom.Id}", multiContent);
+
+                // Проверка успешности запроса
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Информация о пользователе успешно обновлена.");
+                }
+                else
+                {
+                    string errorMessage = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show($"Ошибка при изменении пользователя: {response.StatusCode} - {errorMessage}");
+                }
+            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Ошибка: {ex.Message}");
+            //}
+        }
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

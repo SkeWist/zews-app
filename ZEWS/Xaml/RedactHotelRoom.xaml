@@ -33,7 +33,7 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="0 20 0 10" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18" >Тип номера</TextBlock>
-                    <ComboBox x:Name="type" DisplayMemberPath="Name" Width="120" Height="40" BorderBrush="Black" VerticalContentAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="18"></ComboBox>
+                    <ComboBox x:Name="type" SelectedValuePath="Name" DisplayMemberPath="Name" Width="120" Height="40" BorderBrush="Black" VerticalContentAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="18"></ComboBox>
                 </StackPanel>
                 <StackPanel Margin="60 20 0 10" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18" >Цена за сутки</TextBlock>
@@ -63,6 +63,6 @@
             </ScrollViewer>
             <!-- Кнопка добавления фотографий -->
         </StackPanel>
-        <Button Width="200" Height="50" Content="Сохранить" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="300,0,0,10" Grid.ColumnSpan="2" FontFamily="Bahnschrift Condensed" FontSize="18"/>
+        <Button Width="200" Height="50" Content="Сохранить" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="300,0,0,10" Grid.ColumnSpan="2" FontFamily="Bahnschrift Condensed" FontSize="18" Click="SaveButton_Click"/>
     </Grid>
 </Page>
