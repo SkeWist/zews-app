@@ -139,6 +139,7 @@ namespace ZEWS
         private void SaveButton_Click (object sender, RoutedEventArgs e)
         {
             SendFormData();
+            FrameManager.MainFrame.Navigate(new ListHotelRoom(mainWindow));
         }   
 
         private async void SendFormData()

@@ -49,13 +49,13 @@
             <!-- Основное изображение -->
             <StackPanel Background="White" Margin="0,0,0,10">
                 <Image x:Name="img_1" Width="200" Height="200" Source="/Img/NoPhoto.png"/>
-                <Button x:Name="deleteButton" Content="Удалить фотографию" Width="120" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,5,0" Visibility="Hidden"/>
+                <Button x:Name="deleteButton" Content="Удалить фотографию" Width="120" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,5,5,0" Visibility="Hidden" Click="deleteButton_Click"/>
             </StackPanel>
 
             <!-- Миниатюры изображений в ScrollViewer -->
             <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Margin="0,10,0,0" MinWidth="200" >
                 <StackPanel x:Name="stackPanelImages" Orientation="Horizontal">
-                    <Button Width="60" Height="60" Content="+" Margin="0,0,0,0" HorizontalAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="18"/>
+                    <Button Width="60" Height="60" Content="+" Margin="0,0,0,0" HorizontalAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="18" Click="AddPhotoButton_Click"/>
 
                     <!-- Миниатюрные фотографии -->
                     <!-- Здесь будут динамически добавляться миниатюры -->
