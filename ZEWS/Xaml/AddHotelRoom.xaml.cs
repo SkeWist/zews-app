@@ -19,8 +19,6 @@ namespace ZEWS
     {
         private MainWindow mainWindow;
         private HttpClient client;
-        private string[] roomTypes;
-
         public AddHotelRoom(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -136,11 +134,40 @@ namespace ZEWS
             deleteButton.Visibility = Visibility.Hidden;
         }
 
-        private void SaveButton_Click (object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            // Проверка на пустое имя комнаты
+            if (string.IsNullOrWhiteSpace(name.Text))
+            {
+                MessageBox.Show("Введите название комнаты.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Проверка на выбор типа номера
+            if (type.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите тип номера.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Проверка на пустое поле цены
+            if (string.IsNullOrWhiteSpace(price.Text))
+            {
+                MessageBox.Show("Введите цену комнаты.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Проверка на пустое описание комнаты
+            if (string.IsNullOrWhiteSpace(description.Text))
+            {
+                MessageBox.Show("Введите описание комнаты.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Если все поля заполнены, отправляем данные на сервер
             SendFormData();
             FrameManager.MainFrame.Navigate(new ListHotelRoom(mainWindow));
-        }   
+        }
 
         private async void SendFormData()
         {
@@ -185,7 +212,6 @@ namespace ZEWS
                         }
                     }
                 }
-
                 // Отправляем запрос на сервер
                 HttpResponseMessage response = await client.PostAsync(APIconfig.APIurl + "/rooms", multipartContent);
 
@@ -200,11 +226,10 @@ namespace ZEWS
                     MessageBox.Show("Ошибка при отправке данных: " + responseContent);
                     }
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Ошибка: " + ex.Message);
-            //}
+        }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            FrameManager.MainFrame.Navigate(new ListHotelRoom(mainWindow));
         }
     }
 }

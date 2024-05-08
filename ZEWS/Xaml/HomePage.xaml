@@ -9,7 +9,7 @@
       Title="HomePage" Background="White">
 
     <Grid>
-        <Image Source="/Logo.png" Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Image Source="/Img/Logo.png" Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBlock ></TextBlock>
         <TextBlock HorizontalAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="24" Margin="0 20 0 0">Панель управления</TextBlock>
 
@@ -19,7 +19,7 @@
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Номера гостиницы" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click_HotelRoomsList"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Пользователи системы" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click_ListUsers"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список услуг" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
-            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список бронирований" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список бронирований" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click_ListReservations"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Модерация отзывов" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Статистика продаж" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
         </StackPanel>

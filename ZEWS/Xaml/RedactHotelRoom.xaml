@@ -37,7 +37,7 @@
                 </StackPanel>
                 <StackPanel Margin="60 20 0 10" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBlock FontFamily="Bahnschrift Condensed" FontSize="18" >Цена за сутки</TextBlock>
-                    <TextBox x:Name="price" Width="120" Height="40" BorderBrush="Black" VerticalContentAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
+                    <TextBox x:Name="price" Width="120" Height="40" Language="en-US" BorderBrush="Black" VerticalContentAlignment="Center" FontFamily="Bahnschrift Condensed" FontSize="18"></TextBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel Margin="0 10 0 10" HorizontalAlignment="Left">
@@ -64,5 +64,6 @@
             <!-- Кнопка добавления фотографий -->
         </StackPanel>
         <Button Width="200" Height="50" Content="Сохранить" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="300,0,0,10" Grid.ColumnSpan="2" FontFamily="Bahnschrift Condensed" FontSize="18" Click="SaveButton_Click"/>
+        <Button Height="50" Width="100" Grid.Column="2" VerticalAlignment="Top"  BorderBrush="Black" HorizontalAlignment="Right" Margin="0,10,30,0" Content="Назад" FontFamily="Bahnschrift Condensed" FontSize="18" Click="BackButton_Click"></Button>
     </Grid>
 </Page>

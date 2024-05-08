@@ -66,7 +66,7 @@ namespace ZEWS
         }
         private async void LoadData()
         {
-
+            price.Language = System.Windows.Markup.XmlLanguage.GetLanguage("en-US");
             string token = Properties.Settings.Default.Token;
             //try
             //{
@@ -100,7 +100,7 @@ namespace ZEWS
                             Name = (string)room["name"], 
                             Type = (string)room["type"], 
                             Description = (string)room["description"],
-                            Price = (double)room["price"],
+                            Price = (decimal)room["price"],
                             Photos = HotelRoom.AddPhotos((JObject)room["photos"])    
                         };
                         MessageBox.Show(currentHotelRoom.Id.ToString());
@@ -188,21 +188,19 @@ namespace ZEWS
             }
 
         }
-
         private async void UpdateRoomAsync()
         {
+            string priceText = price.Text;
             string token = Properties.Settings.Default.Token;
-            //try
-
             // Создание HttpClient
             using (HttpClient client = new HttpClient())
             {
               
                 MultipartFormDataContent multiContent = new MultipartFormDataContent();
                  if(currentHotelRoom.Name != name.Text)multiContent.Add(new StringContent(name.Text), "name");
-                 multiContent.Add(new StringContent(((RoomType)type.SelectedItem).Id.ToString()), "type_id");
-                 multiContent.Add(new StringContent(price.Text), "price");
-                 multiContent.Add(new StringContent(description.Text), "description");
+                multiContent.Add(new StringContent(((RoomType)type.SelectedItem).Id.ToString()), "type_id");
+                priceText = priceText.Replace(',', '.');
+                multiContent.Add(new StringContent(priceText), "price"); multiContent.Add(new StringContent(description.Text), "description");
                  foreach (var child in rPhoto)
                  {
                     multiContent.Add(new StringContent(child.ToString()), "removePhotos[]");
@@ -269,13 +267,6 @@ namespace ZEWS
                     MessageBox.Show($"Ошибка при изменении комнаты: {response.StatusCode} - {errorMessage}");
                 }
             }
-
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Ошибка: {ex.Message}");
-            //}
         }
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -323,6 +314,12 @@ namespace ZEWS
         {
             UpdateRoomAsync();
             FrameManager.MainFrame.Navigate(new ListHotelRoom(mainWindow));
+        }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            FrameManager.MainFrame.GoBack();
+            mainWindow.Height = 550;
+            mainWindow.Width = 800;
         }
     }
 }

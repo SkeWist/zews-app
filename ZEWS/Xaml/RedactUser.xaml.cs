@@ -126,10 +126,7 @@ namespace ZEWS.Xaml
         
         private async void UpdateUserAsync()
         {
-            
-            string token = Properties.Settings.Default.Token;
-            //try
-            
+            string token = Properties.Settings.Default.Token;            
                 // Создание HttpClient
                 using (HttpClient client = new HttpClient())
                 {
@@ -186,13 +183,7 @@ namespace ZEWS.Xaml
                         MessageBox.Show($"Ошибка при изменении пользователя: {response.StatusCode} - {errorMessage}");
                     }
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Ошибка: {ex.Message}");
-            //}
         }
-
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             UpdateUserAsync();
@@ -201,7 +192,9 @@ namespace ZEWS.Xaml
 
         private void BackButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            FrameManager.MainFrame.Navigate(new ListUsers(mainWindow));
+            FrameManager.MainFrame.GoBack();
+            mainWindow.Height = 550;
+            mainWindow.Width = 800;
         }
     }
 }

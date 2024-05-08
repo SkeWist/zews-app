@@ -13,7 +13,7 @@ namespace ZEWS.Class
         public long Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string Type { get; set; }
         public List<Photo> Photos { get; set; } // список фотографий
         public static List<Photo> AddPhotos (JObject photosArray)

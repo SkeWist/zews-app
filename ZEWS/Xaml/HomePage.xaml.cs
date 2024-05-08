@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,7 +33,6 @@ namespace ZEWS
                 phone = Properties.Settings.Default.Phone,
                 password = Properties.Settings.Default.Password // Предполагая, что у вас есть сохраненный пароль
             };
-
             // Сериализуем объект в JSON
             string json = JsonConvert.SerializeObject(credentials);
 
@@ -40,30 +40,24 @@ namespace ZEWS
             {
                 HttpResponseMessage response = await client.PostAsync(APIconfig.APIurl + "/auth/logout",
                     new StringContent(json, Encoding.UTF8, "application/json"));
-                
             }
         }
-
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            SendTokens();
             AutorizationPage autorizationPage = new AutorizationPage(mainWindow);
             mainWindow.Mainframe.Navigate(autorizationPage);
         }
-
         private void Button_Click_ListUsers(object sender, RoutedEventArgs e)
         {
             mainWindow.Mainframe.Navigate(new ListUsers(mainWindow));
         }
-
         private void Button_Click_HotelRoomsList(object sender, RoutedEventArgs e)
         {
             mainWindow.Mainframe.Navigate(new ListHotelRoom(mainWindow));
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_ListReservations(object sender, RoutedEventArgs e)
         {
-
+            mainWindow.Mainframe.Navigate(new ListReservation(mainWindow));
         }
     }
 }

@@ -129,6 +129,7 @@
     <Compile Include="Class\HotelRoom.cs" />
     <Compile Include="Class\NewUser.cs" />
     <Compile Include="Class\Photo.cs" />
+    <Compile Include="Class\Reservation.cs" />
     <Compile Include="Class\Role.cs" />
     <Compile Include="Class\RoomType.cs" />
     <Compile Include="Class\Sex.cs" />
@@ -136,8 +137,14 @@
       <DependentUpon>AddNewUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Class\FrameManager.cs" />
+    <Compile Include="Xaml\AddReservation.xaml.cs">
+      <DependentUpon>AddReservation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Xaml\AutorizationPage.xaml.cs">
       <DependentUpon>AutorizationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Xaml\ListReservation.xaml.cs">
+      <DependentUpon>ListReservation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Xaml\ListUsers.xaml.cs">
       <DependentUpon>ListUsers.xaml</DependentUpon>
@@ -153,6 +160,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Xaml\AddNewUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Xaml\AddReservation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +194,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Xaml\ListHotelRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Xaml\ListReservation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

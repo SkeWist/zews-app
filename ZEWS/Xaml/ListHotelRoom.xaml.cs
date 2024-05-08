@@ -28,6 +28,8 @@ namespace ZEWS
             mainWindow.Width = 800;
             Loaded += ListHotelRooms_Loaded;
             HotelRoomListBox.MouseDoubleClick += HotelRoomListBox_MouseDoubleClick;
+            LoadData();
+            
         }
 
         private void HotelRoomListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -69,22 +71,14 @@ namespace ZEWS
 
                         // Извлекаем массив комнат из объекта
                         JArray roomsArray = (JArray)roomsObject["rooms"];
-                        //var photoObject = (JObject);
-                        //var photoList = new List<Photo>();
-                        //foreach (var roomType in roomTypesObject.Properties())
-                        //{
-                            //photoList.Add(new Photo(Convert.ToInt64(roomType.Name), roomType.Value.ToString()));
-                        //}                        // Преобразуем каждый элемент массива в объект Room
                         var rooms = roomsArray.Select(room => new HotelRoom
                         {
-
                             Id = (int)room["id"],
                             Name = (string)room["name"],
                             Description = (string)room["description"],
-                            Price = (double)room["price"],
+                            Price = (decimal)room["price"],
                             Type = (string)room["type"],
                             Photos = HotelRoom.AddPhotos((JObject)(room["photos"]))
-                            // Добавьте другие свойства, если они есть
                         }).ToList();
 
                         // Привязываем список комнат к источнику данных ListBox
@@ -117,36 +111,43 @@ namespace ZEWS
             var button = sender as Button;
             var room = button.DataContext as HotelRoom;
 
-            try
+            // Показываем диалоговое окно для подтверждения удаления
+            MessageBoxResult result = MessageBox.Show("Вы точно уверены, что хотите удалить данный номер?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
             {
-                string token = Properties.Settings.Default.Token;
-
-                // Создаем HttpClient
-                using (HttpClient client = new HttpClient())
+                try
                 {
-                    // Добавляем заголовок авторизации с токеном Bearer
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    string token = Properties.Settings.Default.Token;
 
-                    // Отправляем DELETE запрос по URL для удаления комнаты с определенным id
-                    HttpResponseMessage response = await client.DeleteAsync(APIconfig.APIurl + $"/rooms/{room.Id}");
+                    // Создаем HttpClient
+                    using (HttpClient client = new HttpClient())
+                    {
+                        // Добавляем заголовок авторизации с токеном Bearer
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                    // Проверяем успешность запроса
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // Успешно удалено, можно обновить список комнат
-                        MessageBox.Show("Комната успешно удалена!");
-                        LoadData();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ошибка при удалении: " + response.ReasonPhrase);
+                        // Отправляем DELETE запрос по URL для удаления комнаты с определенным id
+                        HttpResponseMessage response = await client.DeleteAsync(APIconfig.APIurl + $"/rooms/{room.Id}");
+
+                        // Проверяем успешность запроса
+                        if (response.IsSuccessStatusCode)
+                        {
+                            // Успешно удалено, можно обновить список комнат
+                            MessageBox.Show("Комната успешно удалена!");
+                            LoadData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ошибка при удалении: " + response.ReasonPhrase);
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка: " + ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка: " + ex.Message);
+                }
             }
         }
+
     }
 }

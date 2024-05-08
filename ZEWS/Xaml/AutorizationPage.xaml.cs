@@ -47,7 +47,6 @@ namespace ZEWS.Xaml
                 Button_Click(sender, e);
             }
         }
-
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             string login = loginTextBox.Text;
@@ -102,6 +101,5 @@ namespace ZEWS.Xaml
                 FrameManager.MainFrame.Navigate(new HomePage(mainWindow));
             }
         }
-
     }
 }
