@@ -150,5 +150,64 @@ namespace ZEWS.Xaml
         {
             FrameManager.MainFrame.Navigate(new AddReservation(mainWindow));
         }
+
+        private void EditReservation_click(object sender, MouseButtonEventArgs e)
+        {
+                // Получаем выбранное бронирование из списка
+                Reservation selectedReservation = reservationsListBox.SelectedItem as Reservation;
+                // Передаем выбранное бронирование в метод Navigate для редактирования
+                FrameManager.MainFrame.Navigate(new RedactReservation(mainWindow, selectedReservation));
+            Image image = sender as Image;
+            if (image != null)
+            {
+                Reservation reservation = (Reservation)(image.Tag);
+                RedactReservation redactReservation = new RedactReservation(mainWindow, reservation);
+                NavigationService.Navigate(redactReservation);
+                MessageBox.Show(reservation.Id.ToString());
+            }
+            
+
+        }
+
+        private async void DeleteReservation_click(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                // Получаем выбранное бронирование из списка
+                Reservation selectedReservation = reservationsListBox.SelectedItem as Reservation;
+
+                if (selectedReservation == null)
+                {
+                    MessageBox.Show("Пожалуйста, выберите бронирование для удаления.");
+                    return;
+                }
+
+                // Создаем HttpClient
+                using (HttpClient client = new HttpClient())
+                {
+                    // Добавляем заголовок авторизации с токеном Bearer
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+                    // Отправляем DELETE запрос по указанному URL для удаления бронирования
+                    HttpResponseMessage response = await client.DeleteAsync($"{APIconfig.APIurl}/reservations/{selectedReservation.Id}");
+
+                    // Проверяем успешность выполнения запроса
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("Бронирование успешно удалено.");
+                        // Перезагружаем список бронирований после удаления
+                        await LoadDataAsync();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Ошибка при удалении бронирования: {response.ReasonPhrase}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка: {ex.Message}");
+            }
+        }
     }
 }

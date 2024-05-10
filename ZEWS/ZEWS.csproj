@@ -133,6 +133,7 @@
     <Compile Include="Class\Role.cs" />
     <Compile Include="Class\RoomType.cs" />
     <Compile Include="Class\Sex.cs" />
+    <Compile Include="Class\Reviews.cs" />
     <Compile Include="Xaml\AddNewUser.xaml.cs">
       <DependentUpon>AddNewUser.xaml</DependentUpon>
     </Compile>
@@ -149,8 +150,14 @@
     <Compile Include="Xaml\ListUsers.xaml.cs">
       <DependentUpon>ListUsers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Xaml\ModerationList.xaml.cs">
+      <DependentUpon>ModerationList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Xaml\RedactHotelRoom.xaml.cs">
       <DependentUpon>RedactHotelRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Xaml\RedactReservation.xaml.cs">
+      <DependentUpon>RedactReservation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Xaml\RedactUser.xaml.cs">
       <DependentUpon>RedactUser.xaml</DependentUpon>
@@ -205,7 +212,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Xaml\ModerationList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Xaml\RedactHotelRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Xaml\RedactReservation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,6 +264,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\NoPhoto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\pencil.png" />
+    <Resource Include="Img\trash-2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

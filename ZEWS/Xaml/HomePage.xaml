@@ -20,7 +20,7 @@
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Пользователи системы" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click_ListUsers"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список услуг" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Список бронирований" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click_ListReservations"></Button>
-            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Модерация отзывов" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
+            <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Модерация отзывов" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click_ListModeration"></Button>
             <Button Height="40" Width="400" Margin="0 0 0 10" BorderBrush="Black" Content="Статистика продаж" FontFamily="Bahnschrift Condensed" FontSize="18"></Button>
         </StackPanel>
         <Button Height="50" Width="100" VerticalAlignment="Top"  BorderBrush="Black" HorizontalAlignment="Right" Margin="0,10,50,0" Content="Выход" FontFamily="Bahnschrift Condensed" FontSize="18" Click="Button_Click"></Button>

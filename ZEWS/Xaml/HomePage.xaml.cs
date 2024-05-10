@@ -59,5 +59,9 @@ namespace ZEWS
         {
             mainWindow.Mainframe.Navigate(new ListReservation(mainWindow));
         }
+        private void Button_Click_ListModeration(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Mainframe.Navigate(new ModerationList(mainWindow));
+        }
     }
 }

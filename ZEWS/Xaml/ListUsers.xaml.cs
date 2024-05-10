@@ -39,10 +39,8 @@ namespace ZEWS
                     return "Администратор";
                 case "manager":
                     return "Менеджер";
-                case "user":
-                    return "Пользователь";
                 default:
-                    return role;
+                    return "Пользователь";
 
             }
         }

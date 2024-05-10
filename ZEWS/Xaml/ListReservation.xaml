@@ -41,8 +41,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Button Content="{Binding Room.Name}" Click="EditRoom_Click" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Center" Tag="{Binding Room.Id}"></Button>
-                                
+                                <Image Source="/Img/pencil.png" Width="20" Height="20" Stretch="Uniform" Margin="5"
+                                MouseLeftButtonDown="EditReservation_click" Tag="{Binding }"/>
+                                <Image Source="/Img/trash-2.png" Width="20" Height="20" Stretch="Uniform" Margin="5"
+                                MouseLeftButtonDown="DeleteReservation_click" Tag="{Binding }"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -52,5 +54,4 @@
         <Button Grid.Column="1"  Height="50" Width="100" VerticalAlignment="Top"  BorderBrush="Black" HorizontalAlignment="Right" Margin="0,10,50,0" Content="Назад" FontFamily="Bahnschrift Condensed" FontSize="18" Click="BackButton_Click"></Button>
         <Button Grid.Column="0" Height="50" Width="150" VerticalAlignment="Bottom"  BorderBrush="Black" HorizontalAlignment="Right" Margin="0,0,325,10" Content="Создать бронирование" FontFamily="Bahnschrift Condensed" FontSize="18" Click="CreateButton_Click" Grid.ColumnSpan="2"></Button>
     </Grid>
-
 </Page>

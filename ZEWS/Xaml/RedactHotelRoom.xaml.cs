@@ -68,8 +68,6 @@ namespace ZEWS
         {
             price.Language = System.Windows.Markup.XmlLanguage.GetLanguage("en-US");
             string token = Properties.Settings.Default.Token;
-            //try
-            //{
                 // Создание HttpClient
                 using (HttpClient client = new HttpClient())
                 {
@@ -111,13 +109,7 @@ namespace ZEWS
                         MessageBox.Show($"Ошибка при обновлении информации о пользователе: {response.ReasonPhrase}");
                     }
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Ошибка: {ex.Message}");
-            //}
         }
-
         private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
